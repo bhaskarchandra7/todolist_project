@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    {% comment %} <link rel="stylesheet" href="styles.css"> {% endcomment %}
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    
+    .edit-task-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .edit-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    .save-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+    
+    .save-button:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+<body>
+    <div class="edit-task-container">
+        <h1>Edit Task</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" class="edit-input" name="title" value="{{ task.title }}" required>
+            <button class="save-button" type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

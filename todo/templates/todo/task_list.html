@@ -1,0 +1,36 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<section class="todowrap">
+    <div class="todo-container">
+        <div class="add-task-wrap">
+            <h1>Add Task</h1>
+            <form action="{% url 'add_task' %}" method="post" id="add-task-form">
+                {% csrf_token %}
+                <div class="list-input-box">
+                    <input type="text" class="input-filed" placeholder="Add new task" id="add-task-input" name="title">
+                    <button class="btn-sub" type="submit" id="add-task-submit">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="todo-container todo-task-list">
+        <h1 class="heading-tasklist">Tasks List</h1>
+        <div id="todo-tasks">
+            {% for task in tasks %}
+            <div class="list-input-box">
+                <input type="text" class="input-filed" placeholder="Add new task" value="{{ task.title }}" readonly>
+                <a href="{% url 'edit_task' task.id %}" class="btn-sub">edit</a>
+                <a href="{% url 'delete_task' task.id %}" class="btn-sub">delete</a>
+                {% if task.completed %}
+                    <span>Completed</span>
+                {% else %}
+                    <span>Pending</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
